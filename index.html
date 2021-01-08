@@ -5,14 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- materialize icons, css & js -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" href="/css/styles.css" rel="stylesheet">
+  <script type="text/javascript" src="/js/materialize.min.js"></script>
 
   <title>To-Do</title>
 </head>
 
-<body>
-
-  <script type="text/javascript" src="/js/materialize.min.js"></script>
+<body class="grey lighten-2">
+  <!-- top nav -->
+  <nav class="z-depth-3 deep-purple darken-2">
+    <div class="nav-wrapper container">
+      <a href="/">To-Do</a>
+      <span class="right"><i class="material-icons sidenav-trigger" data-target="side-menu">menu</i></span>
+    </div>
+  </nav>
+  <!-- side nav -->
+  <ul id="side-menu" class="sidenav side-menu">
+    <li><a class="subheader">To-Dd</a></li>
+    <li><a href="/" class="waves-effects">Home</a></li>
+    <li><a href="/pages/about.html">About</a></li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li><a class="waves-effects">
+        <i class="material-icons">mail_outline</i>Contact
+      </a></li>
+  </ul>
+  <!-- events -->
+  <div class="container tasks">
+    <div class="card-panel task white row">
+      <img src="/img/task.png" alt="task thumb">
+      <div class="task-details">
+        <div class="task-title">Task Title</div>
+        <div class="task-body">Task Description</div>
+      </div>
+      <div class="task-remove">
+        <i class="material-icons">delete_outline</i>
+      </div>
+    </div>
+  </div>
+  <!-- add button -->
+  <div class="center">
+    <a class="btn-floating btn-small add-btn sidenav-trigger" data-target="side-form">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+  <!-- side form -->
+  <div>
+    <div id="side-form" class="sidenav side-form">
+      <form class="add-task container section">
+        <h6>New To-Do</h6>
+        <div class="divider"></div>
+        <div class="input-field">
+          <label for="title"></label>
+          <input type="text" id="title" class="validate" placeholder="e.g. Protein shake @ 10am">
+        </div>
+      </form>
+    </div>
+    <script src="/js/ui.js"></script>
 </body>
 
 </html>
