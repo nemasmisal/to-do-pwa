@@ -1,5 +1,6 @@
-const staticCashName = "to-do-static-v1";
+const staticCashName = "to-do-static-v2";
 const dynamicCacheName = "to-do-dynamic-v1";
+const cacheSizeLimit = 20;
 const assets = [
   "/",
   "/index.html",
@@ -13,6 +14,16 @@ const assets = [
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
 ];
+
+const limitCacheSize = (cacheName, maxSize) => {
+  caches.open(cacheName).then((cache) => {
+    cache.keys().then((keys) => {
+      if (keys.length > maxSize) {
+        cache.delete(keys[0]).then(() => limitCacheSize(cacheName, maxSize)); //in case we are still over the size
+      }
+    });
+  });
+};
 
 self.addEventListener("install", (evt) => {
   evt.waitUntil(
@@ -39,10 +50,12 @@ self.addEventListener("fetch", (evt) => {
       .then((cacheRes) => {
         return (
           cacheRes ||
-          fetch(evt.request).then(async (res) => {
-            const cache = await caches.open(dynamicCacheName);
-            cache.put(evt.request.url, res.clone());
-            return res;
+          fetch(evt.request).then((res) => {
+           return caches.open(dynamicCacheName).then((cache) => {
+              cache.put(evt.request.url, res.clone());
+              limitCacheSize(dynamicCacheName, cacheSizeLimit);
+              return res;
+            });
           })
         );
       })

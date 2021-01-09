@@ -3,14 +3,19 @@
   "short_name":"To-Do",
   "start_url":"/index.html",
   "display":"standalone",
-  "background_color":"#5e35b1",
-  "theme_color":"#b39ddb",
+  "background_color":"#b39ddb",
+  "theme_color":"#5e35b1",
   "orientation":"portrait-primary",
   "icons":[
     {
       "src":"/img/icons/icon-64x64.png",
       "type":"image/png",
       "sizes":"64x64"
+    },
+    {
+      "src":"/img/icons/icon-64x64.png",
+      "type":"image/png",
+      "sizes":"74x74"
     },
     {
       "src":"/img/icons/icon-96x96.png",
