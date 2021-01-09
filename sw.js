@@ -1,4 +1,4 @@
-const staticCashName = "to-do-static-v2";
+const staticCashName = "to-do-static-v3";
 const dynamicCacheName = "to-do-dynamic-v1";
 const cacheSizeLimit = 20;
 const assets = [
@@ -7,6 +7,9 @@ const assets = [
   "/pages/fallback.html",
   "/js/app.js",
   "/js/ui.js",
+  "/js/taskService.js",
+  "/js/db.js",
+  "/js/dbService.js",
   "/js/materialize.min.js",
   "/css/styles.css",
   "/css/materialize.min.css",

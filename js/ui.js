@@ -1,11 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
-  //nav menu
-  const menu = () => document.querySelector(".side-menu");
-  M.Sidenav.init(menu(), { edge: "right" });
-  //add new task form
-  const form = () => document.querySelector(".side-form");
-  M.Sidenav.init(form(), { edge: "left" });
-});
+import { addTask, removeTask, getAllTasks } from "./taskService.js";
+
 const tasks = () => document.getElementById("tasks");
 
 const renderTask = (data, id) => {
@@ -23,3 +17,30 @@ const renderTask = (data, id) => {
   `;
   tasks().innerHTML += htmlTemp;
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+  //nav menu
+  const menu = () => document.querySelector(".side-menu");
+  M.Sidenav.init(menu(), { edge: "right" });
+  //add new task form
+  const form = () => document.querySelector(".side-form");
+  M.Sidenav.init(form(), { edge: "left" });
+  //add all existing tasks
+  getAllTasks().then((tasks) => {
+    tasks.map((task, index) => renderTask(task, ++index)); //increment index ot start from 1 instead 0
+  });
+});
+
+const form = () => document.querySelector("form");
+form().addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const task = {
+    title: form().title.value,
+    description: form().description.value,
+  };
+
+  addTask(task).catch((e) => console.log(e));
+  renderTask(task);
+  form().title.value = "";
+  form().description.value = "";
+});
