@@ -1,21 +1,21 @@
-const staticCacheName = "to-do-static-v1";
-const dynamicCacheName = "to-do-dynamic-v1";
+const staticCacheName = 'to-do-static-v1';
+const dynamicCacheName = 'to-do-dynamic-v1';
 const cacheSizeLimit = 20;
 const assets = [
-  "/",
-  "/index.html",
-  "/pages/fallback.html",
-  "/js/app.js",
-  "/js/ui.js",
-  "/js/taskService.js",
-  "/js/taskRender.js",
-  "/js/db.js",
-  "/js/materialize.min.js",
-  "/css/styles.css",
-  "/css/materialize.min.css",
-  "/img/task.png",
-  "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
+  '/',
+  '/index.html',
+  '/pages/fallback.html',
+  '/js/taskRender.js',
+  '/js/app.js',
+  '/js/ui.js',
+  '/js/taskService.js',
+  '/js/db.js',
+  '/js/materialize.min.js',
+  '/css/styles.css',
+  '/css/materialize.min.css',
+  '/img/task.png',
+  'https://fonts.googleapis.com/icon?family=Material+Icons',
+  'https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
 ];
 
 const limitCacheSize = (cacheName, maxSize) => {
@@ -27,14 +27,17 @@ const limitCacheSize = (cacheName, maxSize) => {
     });
   });
 };
-self.addEventListener("install", (evt) => {
+self.addEventListener('install', (evt) => {
   evt.waitUntil(
-    caches.open(staticCacheName).then(function (cache) {
-      return cache.addAll(assets);
-    }).catch((err) => console.log(err))
+    caches
+      .open(staticCacheName)
+      .then(function (cache) {
+        return cache.addAll(assets);
+      })
+      .catch((err) => console.log(err))
   );
 });
-self.addEventListener("activate", (evt) => {
+self.addEventListener('activate', (evt) => {
   evt.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
@@ -45,7 +48,7 @@ self.addEventListener("activate", (evt) => {
     })
   );
 });
-self.addEventListener("fetch", (evt) => {
+self.addEventListener('fetch', (evt) => {
   evt.respondWith(
     caches
       .match(evt.request)
@@ -62,8 +65,8 @@ self.addEventListener("fetch", (evt) => {
         );
       })
       .catch(() => {
-        if (evt.request.url.indexOf(".html") > -1) {
-          return caches.match("/pages/fallback.html");
+        if (evt.request.url.indexOf('.html') > -1) {
+          return caches.match('/pages/fallback.html');
         }
       })
   );
