@@ -1,4 +1,4 @@
-const staticCashName = "to-do-static-v3";
+const staticCacheName = "to-do-static-v1";
 const dynamicCacheName = "to-do-dynamic-v1";
 const cacheSizeLimit = 20;
 const assets = [
@@ -8,8 +8,8 @@ const assets = [
   "/js/app.js",
   "/js/ui.js",
   "/js/taskService.js",
+  "/js/taskRender.js",
   "/js/db.js",
-  "/js/dbService.js",
   "/js/materialize.min.js",
   "/css/styles.css",
   "/css/materialize.min.css",
@@ -27,12 +27,11 @@ const limitCacheSize = (cacheName, maxSize) => {
     });
   });
 };
-
 self.addEventListener("install", (evt) => {
   evt.waitUntil(
-    caches.open(staticCashName).then((cache) => {
-      cache.addAll(assets);
-    })
+    caches.open(staticCacheName).then(function (cache) {
+      return cache.addAll(assets);
+    }).catch((err) => console.log(err))
   );
 });
 self.addEventListener("activate", (evt) => {
@@ -40,7 +39,7 @@ self.addEventListener("activate", (evt) => {
     caches.keys().then((keys) => {
       return Promise.all(
         keys
-          .filter((key) => key !== staticCashName && key !== dynamicCacheName)
+          .filter((key) => key !== staticCacheName && key !== dynamicCacheName)
           .map((key) => caches.delete(key))
       );
     })
@@ -54,7 +53,7 @@ self.addEventListener("fetch", (evt) => {
         return (
           cacheRes ||
           fetch(evt.request).then((res) => {
-           return caches.open(dynamicCacheName).then((cache) => {
+            return caches.open(dynamicCacheName).then((cache) => {
               cache.put(evt.request.url, res.clone());
               limitCacheSize(dynamicCacheName, cacheSizeLimit);
               return res;

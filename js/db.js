@@ -17,7 +17,7 @@ const openDB = () => {
     openRequest.onsuccess = (evt) => {
       const db = evt.target.result;
       if (!db.objectStoreNames.contains("tasks")) {
-        db.createObjectStore("tasks", { autoIncrement : true });
+        db.createObjectStore("tasks", { keyPath : 'title' });
       }
       resolve(db);
     };
@@ -25,7 +25,7 @@ const openDB = () => {
       const db = evt.target.result;
       const objectStore = {};
       if (!db.objectStoreNames.contains("tasks")) {
-        objectStore.store = db.createObjectStore("tasks", { autoIncrement : true });
+        objectStore.store = db.createObjectStore("tasks", { keyPath : 'title' });
       }
       objectStore.store.transaction.oncomplete = () => resolve(db);
     };
