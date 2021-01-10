@@ -4,7 +4,7 @@ const toastEl =
 
 document.addEventListener('DOMContentLoaded', () => {
   getAllTasks().then((tasks) => {
-    tasks.map((task, index) => renderTask(task, index));
+    tasks.map(task => renderTask(task));
   });
   tasksEl().addEventListener('click', (evt) => {
     if (evt.target.tagName !== 'I') { return; }
@@ -20,16 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-const renderTask = (data, id) => {
+const renderTask = (data) => {
   const htmlTemp = `
-  <div class="card-panel task white row" data-id="${id}">
+  <div class="card-panel task white row" data-id="${data.id}">
       <img src="/img/task.png" alt="task thumb">
       <div class="task-details">
         <div class="task-title">${data.title}</div>
         <div class="task-body">${data.description}</div>
       </div>
       <div class="task-remove">
-        <i class="material-icons" data-id="${id}">delete_outline</i>
+        <i class="material-icons" data-id="${data.id}">delete_outline</i>
       </div>
     </div>
   `;
@@ -41,11 +41,11 @@ formEl().addEventListener('submit', (evt) => {
   const task = {
     title: formEl().title.value,
     description: formEl().description.value,
+    id: Date.now()
   };
 
-  addTask(task).then(key => {
-  renderTask(task, key);
-  }).catch((e) => console.log(e));
+  addTask(task).catch((e) => console.log(e));
+  renderTask(task);
   formEl().title.value = '';
   formEl().description.value = '';
   M.toast({
