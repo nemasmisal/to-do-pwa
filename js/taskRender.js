@@ -1,6 +1,5 @@
 const tasksEl = () => document.getElementById('tasks');
 const formEl = () => document.querySelector('form');
-const toastEl = 
 
 document.addEventListener('DOMContentLoaded', () => {
   getAllTasks().then((tasks) => {

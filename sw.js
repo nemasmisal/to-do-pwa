@@ -1,5 +1,5 @@
-const staticCacheName = 'to-do-static-v1';
-const dynamicCacheName = 'to-do-dynamic-v1';
+const staticCacheName = 'to-do-static-v3';
+const dynamicCacheName = 'to-do-dynamic-v3';
 const cacheSizeLimit = 20;
 const assets = [
   '/',
@@ -14,6 +14,7 @@ const assets = [
   '/css/styles.css',
   '/css/materialize.min.css',
   '/img/task.png',
+  '/favicon.ico',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
 ];
