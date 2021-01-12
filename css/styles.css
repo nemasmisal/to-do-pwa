@@ -20,10 +20,15 @@ nav a span {
 nav .sidenav-trigger {
   margin: 0;
 }
+.sidenav {
+  width: 80%;
+}
 
 /* task styles */
 .tasks {
   margin-top: 20px;
+  word-break: break-all;
+  max-width: 600px;
 }
 .card-panel.task {
   border-radius: 8px;
@@ -72,9 +77,9 @@ form .input-field {
   margin-top: 30px;
 }
 .toast {
-  width: 50%;
   margin: 0 auto;
 }
 .toast-msg{
   justify-content: center;
+  width: 100%;
 }

@@ -11,11 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     removeTask(Number(id));
     const task = document.querySelector(`.task[data-id="${id}"]`);
     task.remove();
-    M.toast({
-      html: '<h6>Task removed!</h6>',
-      classes: 'rounded deep-purple darken-2 toast-msg',
-      displayLength: 1500,
-    });
+    toastMsg('Task removed!');
   });
 });
 
@@ -47,9 +43,5 @@ formEl().addEventListener('submit', (evt) => {
   renderTask(task);
   formEl().title.value = '';
   formEl().description.value = '';
-  M.toast({
-    html: '<h6>New task added!</h6>',
-    classes: 'rounded deep-purple darken-2 toast-msg',
-    displayLength: 1500,
-  });
+  toastMsg('New task added!');
 });

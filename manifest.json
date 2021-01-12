@@ -10,18 +10,19 @@
     {
       "src":"/img/icons/icon-64x64.png",
       "type":"image/png",
-      "sizes":"64x64"
+      "sizes":"64x64",
+      "purpose": "any maskable"
+
     },
     {
-      "src":"/img/icons/icon-64x64.png",
+      "src":"/img/icons/icon-74x74.png",
       "type":"image/png",
       "sizes":"74x74"
     },
     {
       "src":"/img/icons/icon-96x96.png",
       "type":"image/png",
-      "sizes":"96x96",
-      "purpose": "any maskable"
+      "sizes":"96x96"
     },
     {
       "src":"/img/icons/icon-128x128.png",
