@@ -8,8 +8,8 @@ const toastMsg = (msg) => {
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('/sw.js')
-    .then(() => toastMsg('Ready for offline mode!'))
-    .catch(() => toastMsg('Lack of browser support :/'));
+    .then(() => console.log('Ready for offline mode!'))
+    .catch(() => console.log('Lack of browser support :/'));
 } else {
   toastMsg('Lack of browser support :/');
 }

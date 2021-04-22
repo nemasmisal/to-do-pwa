@@ -1,5 +1,5 @@
-const staticCacheName = 'to-do-static-v4';
-const dynamicCacheName = 'to-do-dynamic-v4';
+const staticCacheName = 'to-do-static-v6';
+const dynamicCacheName = 'to-do-dynamic-v6';
 const cacheSizeLimit = 20;
 const assets = [
   '/',
